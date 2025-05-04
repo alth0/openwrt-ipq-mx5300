@@ -18,7 +18,7 @@ jobs:
           sudo apt update
           sudo apt install -y build-essential clang flex gawk \
             gcc-multilib git make ncurses-dev libssl-dev \
-            unzip wget python3-distutils rsync
+            unzip wget rsync
 
       - name: Update and install feeds
         run: |
