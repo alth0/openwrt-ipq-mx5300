@@ -42,5 +42,5 @@ jobs:
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
-          name: openwrt-firmware
+          name: openwrt-nss-mx5300
           path: bin/targets/
