@@ -1,0 +1,41 @@
+name: Build OpenWrt
+
+on:
+  schedule:
+    - cron: '0 2 * * 1'  # Jeden Montag um 2:00 Uhr UTC
+  workflow_dispatch:      # Manuelles Auslösen in der Weboberfläche
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential clang flex gawk \
+            gcc-multilib git make ncurses-dev libssl-dev \
+            unzip wget python3-distutils rsync
+
+      - name: Update and install feeds
+        run: |
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+
+      - name: Set defconfig
+        run: make defconfig V=s
+
+      - name: Download sources
+        run: make download -j2 V=s
+
+      - name: Build firmware
+        run: make -j2 V=s
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: openwrt-firmware
+          path: bin/targets/
