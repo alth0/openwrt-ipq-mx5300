@@ -21,7 +21,7 @@ jobs:
             unzip wget rsync
 
       - name: Set variables
-        run : |
+        run: |
           export KBUILD_BUILD_USER="build"
           export KBUILD_BUILD_HOST="theiakos.com"
       
