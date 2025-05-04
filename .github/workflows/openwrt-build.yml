@@ -34,10 +34,10 @@ jobs:
         run: make defconfig V=s
 
       - name: Download sources
-        run: make download -j2 V=s
+        run: make download -j$(nproc) V=s
 
       - name: Build firmware
-        run: make -j2 V=s
+        run: make -j$(nproc) V=s
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
