@@ -58,7 +58,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: "24.10"
-          name: 24.10-nss (${{ env.RELEASE_DATE }})
+          name: 24.10-nss
           files: |
             release-files/openwrt-*-factory.bin
             release-files/openwrt-*-sysupgrade.bin
