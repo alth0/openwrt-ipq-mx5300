@@ -42,7 +42,7 @@ jobs:
         with:
           name: openwrt-nss-mx5300
           path: bin/targets/
-        retention-days: 3
+          retention-days: 1
 
 
   release:
