@@ -34,7 +34,7 @@ jobs:
       - name: Build firmware
         run: make -j$(nproc) V=s
         env:
-          KBUILD_BUILD_USER: "build"
+          KBUILD_BUILD_USER: "alexandros"
           KBUILD_BUILD_HOST: "theiakos.com"
 
       - name: Upload firmware
