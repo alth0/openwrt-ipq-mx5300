@@ -2,7 +2,7 @@ name: Build 24.10-nss for Linksys MX5300
 
 on:
   schedule:
-    - cron: '0 2 * * 1,3,5'
+    - cron: '0 1 * * *'
   workflow_dispatch:
 
 env:
@@ -59,7 +59,7 @@ jobs:
       - name: Set release tag and name
         run: |
           RELEASE_DATE=$(date +'%Y%m%d')
-          RELEASE_TAG="24.10-nss-${RELEASE_DATE}"
+          RELEASE_TAG="24.10-nss-nightly-${RELEASE_DATE}"
           echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
           echo "Release Name: ${RELEASE_TAG}"
 
