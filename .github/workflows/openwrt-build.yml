@@ -32,10 +32,10 @@ jobs:
         run: make download -j$(nproc) V=s
 
       - name: Build firmware
-        run: make -j$(nproc) V=s
-        env:
-          KBUILD_BUILD_USER: "alexandros"
-          KBUILD_BUILD_HOST: "theiakos.com"
+        run: |
+          export KBUILD_BUILD_USER="alexandros"
+          export KBUILD_BUILD_HOST="theiakos.com"
+          make -j$(nproc) V=s
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
