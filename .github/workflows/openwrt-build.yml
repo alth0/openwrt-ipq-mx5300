@@ -1,4 +1,4 @@
-name: Build OpenWrt
+name: Build OpenWrt with NSS for Linksys MX5300
 
 on:
   schedule:
@@ -20,11 +20,6 @@ jobs:
             gcc-multilib git make ncurses-dev libssl-dev \
             unzip wget rsync
 
-      - name: Set variables
-        run: |
-          export KBUILD_BUILD_USER="build"
-          export KBUILD_BUILD_HOST="theiakos.com"
-      
       - name: Update and install feeds
         run: |
           ./scripts/feeds update -a
@@ -38,9 +33,34 @@ jobs:
 
       - name: Build firmware
         run: make -j$(nproc) V=s
+        env:
+          KBUILD_BUILD_USER: "build"
+          KBUILD_BUILD_HOST: "theiakos.com"
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
           name: openwrt-nss-mx5300
           path: bin/targets/
+
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: openwrt-nss-mx5300
+          path: release-files
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: "24.10"
+          name: 24.10-nss (${{ env.RELEASE_DATE }})
+          files: |
+            release-files/openwrt-*-factory.bin
+            release-files/openwrt-*-sysupgrade.bin
+            release-files/sha256sums
+          overwrite: true
