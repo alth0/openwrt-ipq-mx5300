@@ -5,6 +5,10 @@ on:
     - cron: '0 2 * * 1,3,5'
   workflow_dispatch:
 
+env:
+  KBUILD_BUILD_USER: alexandros
+  KBUILD_BUILD_HOST: theiakos.com
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,10 +36,7 @@ jobs:
         run: make download -j$(nproc) V=s
 
       - name: Build firmware
-        run: |
-          export KBUILD_BUILD_USER="alexandros"
-          export KBUILD_BUILD_HOST="theiakos.com"
-          make -j$(nproc) V=s
+        run:  make -j$(nproc) V=s
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
