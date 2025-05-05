@@ -24,13 +24,13 @@ jobs:
             gcc-multilib git make ncurses-dev libssl-dev \
             unzip wget rsync
 
-      - name: Set defconfig
-        run: make defconfig V=s
-
       - name: Update and install feeds
         run: |
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+        
+      - name: Set defconfig
+        run: make defconfig V=s
 
       - name: Download sources
         run: make download -j$(nproc) V=s
