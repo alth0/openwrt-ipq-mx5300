@@ -54,13 +54,19 @@ jobs:
           name: openwrt-nss-mx5300
           path: release-files
 
+      - name: Set release tag and name
+        run: |
+          RELEASE_DATE=$(date +'%Y%m%d')
+          RELEASE_TAG="24.10-nss-${RELEASE_DATE}"
+          echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
+          echo "Release Name: ${RELEASE_TAG}"
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: "24.10"
-          name: 24.10-nss
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: ${{ env.RELEASE_TAG }}
           files: |
-            release-files/openwrt-*-factory.bin
-            release-files/openwrt-*-sysupgrade.bin
-            release-files/sha256sums
-          overwrite: true
+            release-files/qualcommax/ipq807x/openwrt-*-factory.bin
+            release-files/qualcommax/ipq807x/openwrt-*-sysupgrade.bin
+            release-files/qualcommax/ipq807x/sha256sums
