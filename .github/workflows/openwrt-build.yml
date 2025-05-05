@@ -1,4 +1,4 @@
-name: Build OpenWrt with NSS for Linksys MX5300
+name: Build 24.10-nss for Linksys MX5300
 
 on:
   schedule:
