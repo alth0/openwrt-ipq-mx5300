@@ -5,10 +5,6 @@ on:
     - cron: '0 1 * * *'
   workflow_dispatch:
 
-env:
-  KBUILD_BUILD_USER: alexandros
-  KBUILD_BUILD_HOST: theiakos.com
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,6 +27,11 @@ jobs:
         
       - name: Set defconfig
         run: make defconfig V=s
+
+      - name: Set custom kernel build user and domain
+        run: |
+            echo 'CONFIG_KERNEL_BUILD_USER="alexandros"' >> .config
+            echo 'CONFIG_KERNEL_BUILD_DOMAIN="theiakos.com"' >> .config
 
       - name: Download sources
         run: make download -j$(nproc) V=s
