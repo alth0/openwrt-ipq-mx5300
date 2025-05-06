@@ -3,10 +3,6 @@ name: Build 24.10-nss-custom for Linksys MX5300
 on:
   workflow_dispatch:
 
-env:
-  KBUILD_BUILD_USER: alexandros
-  KBUILD_BUILD_HOST: theiakos.com
-
 jobs:
   build:
     runs-on: ubuntu-latest
