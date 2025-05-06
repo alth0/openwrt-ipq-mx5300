@@ -1,8 +1,6 @@
-name: Build 24.10-nss for Linksys MX5300
+name: Build 24.10-nss-custom for Linksys MX5300
 
 on:
-  schedule:
-    - cron: '0 1 * * *'
   workflow_dispatch:
 
 env:
@@ -29,9 +27,6 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
         
-      - name: Set defconfig
-        run: make defconfig V=s
-
       - name: Download sources
         run: make download -j$(nproc) V=s
 
