@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Check out source code
         uses: actions/checkout@v4
+        with:
+          ref: 24.10-nss-custom
 
       - name: Install dependencies
         run: |
