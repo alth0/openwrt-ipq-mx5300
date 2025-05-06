@@ -1,0 +1,69 @@
+name: Build 24.10-nss-custom for Linksys MX5300
+
+on:
+  workflow_dispatch:
+
+env:
+  KBUILD_BUILD_USER: alexandros
+  KBUILD_BUILD_HOST: theiakos.com
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential clang flex gawk \
+            gcc-multilib git make ncurses-dev libssl-dev \
+            unzip wget rsync
+
+      - name: Update and install feeds
+        run: |
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+        
+      - name: Download sources
+        run: make download -j$(nproc) V=s
+
+      - name: Build firmware
+        run:  make -j$(nproc) V=s
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: openwrt-nss-mx5300
+          path: bin/targets/
+          retention-days: 1
+
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: openwrt-nss-mx5300
+          path: release-files
+
+      - name: Set release tag and name
+        run: |
+          RELEASE_DATE=$(date +'%Y%m%d')
+          RELEASE_TAG="24.10-nss-nightly-${RELEASE_DATE}"
+          echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
+          echo "Release Name: ${RELEASE_TAG}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: ${{ env.RELEASE_TAG }}
+          files: |
+            release-files/qualcommax/ipq807x/openwrt-*-factory.bin
+            release-files/qualcommax/ipq807x/openwrt-*-sysupgrade.bin
+            release-files/qualcommax/ipq807x/sha256sums
