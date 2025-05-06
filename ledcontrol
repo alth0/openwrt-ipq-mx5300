@@ -1,9 +1,0 @@
-if [ "$1" = "status" ]; then
-    echo "red: $(cat /sys/class/leds/red:status/brightness)"
-    echo "green: $(cat /sys/class/leds/green:status/brightness)"
-    echo "blue: $(cat /sys/class/leds/blue:status/brightness)"
-else
-    echo "$1" > /sys/class/leds/red:status/brightness
-    echo "$2" > /sys/class/leds/green:status/brightness
-    echo "$3" > /sys/class/leds/blue:status/brightness
-fi
