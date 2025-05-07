@@ -37,7 +37,7 @@ jobs:
       - name: Rename firmware
         run: |
           mv bin/targets/qualcommax/ipq807x/openwrt-*-factory.bin bin/targets/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-factory.bin
-          mv bin/targets/ipq807x/openwrt-*-sysupgrade.bin bin/targets/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-sysupgrade.bin
+          mv bin/targets/qualcommax/ipq807x/openwrt-*-sysupgrade.bin bin/targets/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-sysupgrade.bin
           mv bin/targets/qualcommax/ipq807x/sha256sums bin/targets/qualcommax/ipq807x/sha256sums.txt
   
       - name: Upload firmware
