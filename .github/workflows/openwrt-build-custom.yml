@@ -51,7 +51,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          name: openwrt-nss-mx5300
+          name: openwrt-nss-mx5300-custom
           path: release-files
 
       - name: Set release tag and name
