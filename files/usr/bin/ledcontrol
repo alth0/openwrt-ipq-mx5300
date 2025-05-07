@@ -1,9 +1,19 @@
+usage() {
+    echo "Usage: $0 <status|red green blue>"
+    echo
+    echo "  status             - Displays the current status of the LEDs"
+    echo "  red green blue     - Sets the brightness of the LEDs (values between 0 and 255)"
+}
+
 if [ "$1" = "status" ]; then
     echo "red: $(cat /sys/class/leds/red:status/brightness)"
     echo "green: $(cat /sys/class/leds/green:status/brightness)"
     echo "blue: $(cat /sys/class/leds/blue:status/brightness)"
-else
+elif [ "$#" -eq 3 ]; then
     echo "$1" > /sys/class/leds/red:status/brightness
     echo "$2" > /sys/class/leds/green:status/brightness
     echo "$3" > /sys/class/leds/blue:status/brightness
+else
+    usage
+    exit 1
 fi
