@@ -25,6 +25,9 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
+      - name: Make olddefconfig
+        run: make olddefconfig V=s
+
       - name: Download sources
         run: make download -j$(nproc)
 
