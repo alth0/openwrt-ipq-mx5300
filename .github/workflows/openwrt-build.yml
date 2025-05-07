@@ -59,14 +59,20 @@ jobs:
           echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
           echo "Release Name: ${RELEASE_TAG}"
 
+      - name: Rename firmware
+        run: |
+          mv release-files/qualcommax/ipq807x/openwrt-*-factory.bin release-files/qualcommax/ipq807x/openwrt-mx5300-factory.bin
+          mv release-files/qualcommax/ipq807x/openwrt-*-sysupgrade.bin release-files/qualcommax/ipq807x/openwrt-mx5300-sysupgrade.bin
+          mv release-files/qualcommax/ipq807x/sha256sums release-files/qualcommax/ipq807x/sha256sums.txt
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.RELEASE_TAG }}
           name: ${{ env.RELEASE_TAG }}
           files: |
-            release-files/qualcommax/ipq807x/openwrt-*-factory.bin
-            release-files/qualcommax/ipq807x/openwrt-*-sysupgrade.bin
-            release-files/qualcommax/ipq807x/sha256sums
+            release-files/qualcommax/ipq807x/openwrt-mx5300-factory.bin
+            release-files/qualcommax/ipq807x/openwrt-mx5300-sysupgrade.bin
+            release-files/qualcommax/ipq807x/sha256sums.txt
 
 
