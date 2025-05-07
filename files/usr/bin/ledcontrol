@@ -1,8 +1,8 @@
 usage() {
     echo "Usage: $0 <status|red green blue>"
     echo
-    echo "  status             - Displays the current status of the LEDs"
-    echo "  red green blue     - Sets the brightness of the LEDs (values between 0 and 255)"
+    echo "  status             - Displays the current status of the onboard RGB LED"
+    echo "  red green blue     - Sets the brightness of the onboard RGB LED (values between 0 and 255)"
 }
 
 if [ "$1" = "status" ]; then
