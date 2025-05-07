@@ -3,7 +3,7 @@
 | Branch                                                                                  | mac80211 Version | Notes                                                                 |
 |-----------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------|
 | [24.10-nss](https://github.com/alth0/openwrt-ipq-mx5300/tree/24.10-nss)               |6.12.6|Current with upstream `openwrt-24.10` (next stable release)|
-| [24.10-nss-custom](https://github.com/alth0/openwrt-ipq-mx5300/tree/24.10-nss-custom)               |6.12.6|Current with upstream `openwrt-24.10` (next stable release) Also includes LuCI, nano, irqbalance and htop by default. These builds are generally tested.|
+| [24.10-nss-custom](https://github.com/alth0/openwrt-ipq-mx5300/tree/24.10-nss-custom)               |6.12.6|Current with upstream `openwrt-24.10` (next stable release) Also includes LuCI, nano, irqbalance and htop by default.|
 
 
 ## Table of Contents
