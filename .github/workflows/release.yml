@@ -5,6 +5,7 @@ on:
     workflows: ["openwrt-build", "openwrt-build-custom"]
     types:
       - completed
+  workflow_dispatch:
 
 jobs:
   release:
