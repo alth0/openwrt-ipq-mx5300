@@ -1,4 +1,6 @@
 # NSS Fork for IPQ807x - Linksys MX5300 builds
+| [Original Repository](https://github.com/qosmio/openwrt-ipq)
+
 | Branch                                                                                  | mac80211 Version | Notes                                                                 |
 |-----------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------|
 | [24.10-nss](https://github.com/qosmio/openwrt-ipq/tree/24.10-nss)               |6.12.6|Current with upstream `openwrt-24.10` (next stable release)|
