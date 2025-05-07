@@ -38,7 +38,6 @@ jobs:
         run: |
           mv bin/targets/qualcommax/ipq807x/openwrt-*-factory.bin bin/targets/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-factory.bin
           mv bin/targets/qualcommax/ipq807x/openwrt-*-sysupgrade.bin bin/targets/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-sysupgrade.bin
-          mv bin/targets/qualcommax/ipq807x/sha256sums bin/targets/qualcommax/ipq807x/sha256sums.txt
   
       - name: Upload firmware
         uses: actions/upload-artifact@v4
@@ -80,7 +79,6 @@ jobs:
         run: |
           mv bin/targets/qualcommax/ipq807x/openwrt-*-factory.bin bin/targets/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-factory.bin
           mv bin/targets/qualcommax/ipq807x/openwrt-*-sysupgrade.bin bin/targets/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-sysupgrade.bin
-          mv bin/targets/qualcommax/ipq807x/sha256sums bin/targets/qualcommax/ipq807x/sha256sums-custom.txt
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
@@ -112,6 +110,14 @@ jobs:
             echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
             echo "Release Name: ${RELEASE_TAG}"
 
+        - name: Generate sha256sums
+          run: |
+            sha256sum release-files-custom/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-factory.bin \
+                      release-files-custom/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-sysupgrade.bin \
+                      release-files/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-factory.bin \
+                      release-files/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-sysupgrade.bin > release-files/qualcommax/ipq807x/sha256sums.txt
+                      
+
         - name: Update release
           uses: softprops/action-gh-release@v1
           with:
@@ -120,7 +126,6 @@ jobs:
             files: |
               release-files-custom/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-factory.bin
               release-files-custom/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-sysupgrade.bin
-              release-files-custom/qualcommax/ipq807x/sha256sums-custom.txt
               release-files/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-factory.bin
               release-files/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-sysupgrade.bin
               release-files/qualcommax/ipq807x/sha256sums.txt
