@@ -62,7 +62,7 @@ jobs:
       - name: Set release tag and name
         run: |
           RELEASE_DATE=$(date +'%Y%m%d')
-          RELEASE_TAG="24.10-nss-custom-${RELEASE_DATE}"
+          RELEASE_TAG="24.10-nss-nightly-${RELEASE_DATE}"
           echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
           echo "Release Name: ${RELEASE_TAG}"
 
