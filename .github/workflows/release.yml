@@ -1,0 +1,56 @@
+name: Create Combined Release
+
+on:
+  workflow_run:
+    workflows: ["openwrt-build", "openwrt-build-custom"]
+    types:
+      - completed
+
+jobs:
+  release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download main build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: openwrt-nss-mx5300
+          path: artifacts/main
+
+      - name: Download custom build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: openwrt-nss-mx5300-custom
+          path: artifacts/custom
+
+      - name: Set release tag and name
+        run: |
+          RELEASE_DATE=$(date +'%Y%m%d')
+          RELEASE_TAG="24.10-nss-nightly-${RELEASE_DATE}"
+          echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
+          echo "Release Name: ${RELEASE_TAG}"
+
+      - name: Rename and organize release files
+        run: |
+          mkdir -p release-files
+
+          # Main build
+          cp artifacts/main/qualcommax/ipq807x/*factory.bin release-files/openwrt-mx5300-factory.bin
+          cp artifacts/main/qualcommax/ipq807x/*sysupgrade.bin release-files/openwrt-mx5300-sysupgrade.bin
+          cp artifacts/main/qualcommax/ipq807x/sha256sums release-files/sha256sums-main.txt
+
+          # Custom build
+          cp artifacts/custom/qualcommax/ipq807x/*factory.bin release-files/openwrt-mx5300-custom-factory.bin
+          cp artifacts/custom/qualcommax/ipq807x/*sysupgrade.bin release-files/openwrt-mx5300-custom-sysupgrade.bin
+          cp artifacts/custom/qualcommax/ipq807x/sha256sums release-files/sha256sums-custom.txt
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: ${{ env.RELEASE_TAG }}
+          files: release-files/*
