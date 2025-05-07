@@ -25,9 +25,6 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
-      - name: Make kernel_oldconfig
-        run: make kernel_oldconfig
-        
       - name: Download sources
         run: make download -j$(nproc)
 
