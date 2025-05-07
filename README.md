@@ -2,7 +2,7 @@
 | Branch                                                                                  | mac80211 Version | Notes                                                                 |
 |-----------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------|
 | [24.10-nss](https://github.com/alth0/openwrt-ipq-mx5300/tree/24.10-nss)               |6.12.6|Current with upstream `openwrt-24.10` (next stable release)|
-| [24.10-nss-custom](https://github.com/alth0/openwrt-ipq-mx5300/tree/24.10-nss-custom)               |6.12.6|Current with upstream `openwrt-24.10` (next stable release) Also includes LuCI, nano, irqbalance and htop by default.|
+| [24.10-nss-custom](https://github.com/alth0/openwrt-ipq-mx5300/tree/24.10-nss-custom)               |6.12.6|Current with upstream `openwrt-24.10` (next stable release) Also includes LuCI, nano, irqbalance and htop by default. These builds are generally tested.|
 
 
 ## Table of Contents
@@ -140,13 +140,3 @@ If you have questions or issues, please join the discussion on OpenWrt's forums.
 
    5. Be respectful and mindful. I dedicate my free time to maintain and improve this project, and I do it for the benefit of the community. Remember that I'm not a full-time developer or support team—I'm just an individual sharing my work. Constructive feedback is always welcome, but please refrain from being overly critical or demanding.
 
-## Support the Project
-
-I never really thought about setting up donations before, but with so many people being receptive and appreciative and asking how to contribute, I figured, why not? Of course, this project also builds on the incredible work done by the talented devs upstream who put in countless hours into OpenWrt itself. I’ll definitely continue working on this, but if you’d like to support, every bit helps.
-
-[![Donate with PayPal](./paypal.png)](https://www.paypal.com/donate?business=3V3H2SZFY7DNQ&item_name=Maintaining+NSS+fork+of+OpenWRT+and+NSS+packages.)
-<a href="https://cash.app/$austinzk">
-  <img src="./cashapp.png" alt="Cashapp" width="150px"/>
-</a>
-
-Consider donating to the [OpenWrt Foundation](https://openwrt.org/donate)
