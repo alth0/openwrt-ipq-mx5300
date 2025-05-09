@@ -26,13 +26,13 @@ jobs:
           ./scripts/feeds install -a
            
       - name: Set defconfig
-        run: make defconfig V=s
+        run: make defconfig
 
       - name: Download sources
-        run: make download -j$(nproc) V=s
+        run: make download -j$(nproc)
 
       - name: Build firmware
-        run:  make -j$(nproc) V=s
+        run:  make -j$(nproc)
       
       - name: Rename firmware
         run: |
@@ -82,7 +82,7 @@ jobs:
         run: make download -j$(nproc)
 
       - name: Build firmware
-        run:  make -j$(nproc) V=s
+        run:  make -j$(nproc)
 
       - name: Rename firmware
         run: |
