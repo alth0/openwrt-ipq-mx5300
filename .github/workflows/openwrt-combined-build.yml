@@ -135,9 +135,9 @@ jobs:
             tag_name: ${{ env.RELEASE_TAG }}
             name: ${{ env.RELEASE_TAG }}
             files: |
-              release-files-custom/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-factory.bin
-              release-files-custom/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-sysupgrade.bin
               release-files/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-factory.bin
               release-files/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-sysupgrade.bin
+              release-files-custom/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-factory.bin
+              release-files-custom/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-sysupgrade.bin
               sha256sums.txt
 
