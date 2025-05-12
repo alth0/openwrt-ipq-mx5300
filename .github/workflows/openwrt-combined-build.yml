@@ -123,9 +123,10 @@ jobs:
           run: |
             cd release-files-custom/qualcommax/ipq807x
             sha256sum openwrt-nss-24.10-mx5300-custom-factory.bin \
-                      openwrt-nss-24.10-mx5300-custom-sysupgrade.bin \
-                      openwrt-nss-24.10-mx5300-factory.bin \
-                      openwrt-nss-24.10-mx5300-sysupgrade.bin > sha256sums.txt
+                      openwrt-nss-24.10-mx5300-custom-sysupgrade.bin >> "$GITHUB_WORKSPACE/sha256sums.txt"
+            cd "$GITHUB_WORKSPACE/release-files/qualcommax/ipq807x"
+            sha256sum openwrt-nss-24.10-mx5300-factory.bin \
+                      openwrt-nss-24.10-mx5300-sysupgrade.bin >> "$GITHUB_WORKSPACE/sha256sums.txt"
                       
 
         - name: Update release
@@ -138,5 +139,5 @@ jobs:
               release-files-custom/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-custom-sysupgrade.bin
               release-files/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-factory.bin
               release-files/qualcommax/ipq807x/openwrt-nss-24.10-mx5300-sysupgrade.bin
-              release-files/qualcommax/ipq807x/sha256sums.txt
+              sha256sums.txt
 
